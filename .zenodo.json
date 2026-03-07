@@ -1,0 +1,41 @@
+{
+  "title": "Construção do Índice de Salvaguarda Biocultural (ISB) via Integração TRI-Fuzzy em Comunidades Quilombolas",
+  "description": "Dados, código-fonte e manuscrito do artigo que desenvolve e implementa o Índice de Salvaguarda Biocultural (ISB), integrando calibração psicométrica via Teoria de Resposta ao Item (TRI, Modelo de Crédito Parcial de Masters) com inferência fuzzy tipo Mamdani para produzir um índice contínuo de urgência de salvaguarda de Saberes e Sistemas Agrícolas Tradicionais (SSAT) em comunidades quilombolas do Território de Identidade Semiárido Nordeste II (Bahia).",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "creators": [
+    {
+      "name": "Oliveira, Catuxe Varjão de Santana",
+      "affiliation": "Programa de Pós-graduação em Ciências da Propriedade Intelectual (PPGPI), Universidade Federal de Sergipe",
+      "orcid": ""
+    },
+    {
+      "name": "Santos, Luiz Diego Vidal",
+      "affiliation": "Departamento de Tecnologia, Universidade Estadual de Feira de Santana",
+      "orcid": ""
+    }
+  ],
+  "keywords": [
+    "Índice de Salvaguarda Biocultural",
+    "Lógica fuzzy",
+    "Teoria de Resposta ao Item",
+    "Vulnerabilidade biocultural",
+    "Sistemas agrícolas tradicionais",
+    "Comunidades quilombolas",
+    "Modelo de Crédito Parcial",
+    "Inferência Mamdani"
+  ],
+  "license": {
+    "id": "CC-BY-4.0"
+  },
+  "doi": "10.5281/zenodo.18901351",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ldvsantos/capitulo_4_catuxe",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ],
+  "language": "por",
+  "access_right": "open"
+}
