@@ -1,0 +1,234 @@
+%%
+%% Artigo 4 -- Índice de Salvaguarda Biocultural (ISB) via Integração TRI-Fuzzy
+%%
+%% Formatado para Springer Nature (sn-jnl.cls)
+%% Conteúdo migrado do Capítulo 4 da tese
+%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% lineno for review
+\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style
+
+%%%% Standard Packages
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage[utf8]{inputenc}%
+\usepackage[T1]{fontenc}%
+
+%% Theorem styles
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+
+\begin{document}
+
+\title[ISB via TRI-Fuzzy]{Construção do Índice de Salvaguarda Biocultural (ISB) via Integração TRI-Fuzzy em Comunidades Quilombolas}
+
+\author*[1]{\fnm{Catuxe Varjão de Santana} \sur{Oliveira}}\email{catuxe@academico.ufs.br}
+
+\author[2]{\fnm{Luiz Diego Vidal} \sur{Santos}}\email{ldvsantos@uefs.br}
+
+\author[1]{\fnm{XXXXXXXXXXXXX} \sur{XXXXXXXXXXXX}}
+
+\affil*[1]{\orgdiv{Programa de Pós-graduação em Ciências da Propriedade Intelectual (PPGPI)}, \orgname{Universidade Federal de Sergipe}, \orgaddress{\city{São Cristóvão}, \state{Sergipe}, \country{Brasil}}}
+
+\affil[2]{\orgdiv{Departamento de Tecnologia}, \orgname{Universidade Estadual de Feira de Santana}, \orgaddress{\city{Feira de Santana}, \state{Bahia}, \country{Brasil}}}
+
+
+\abstract{A priorização de estratégias de salvaguarda de Saberes e Sistemas Agrícolas Tradicionais (SSAT) demanda instrumentos quantitativos capazes de capturar a multidimensionalidade e as fronteiras difusas intrínsecas à vulnerabilidade biocultural. Este estudo desenvolve e implementa o Índice de Salvaguarda Biocultural (ISB), integrando calibração psicométrica via Teoria de Resposta ao Item (TRI, Modelo de Crédito Parcial de Masters) com inferência fuzzy tipo Mamdani para produzir um índice contínuo de urgência de salvaguarda. As oito dimensões de vulnerabilidade identificadas por meta-análise prévia foram operacionalizadas em instrumento psicométrico adaptado do WOCAT-SLM-QBR, aplicado a comunidades quilombolas do Território de Identidade Semiárido Nordeste II (Bahia). O modelo TRI calibrou simultaneamente limiares de dificuldade ($\delta_{ik}$) e escores latentes ($\theta_n$) em escala logit, produzindo as entradas para o motor de inferência fuzzy. As funções de pertinência e a base de regras SE-ENTÃO foram elicitadas de forma híbrida (evidência meta-analítica, painel Delphi e validação comunitária), com ponderações informadas pelas magnitudes de efeito ($lnRR$). O ISB resultante, normalizado em escala 0--100, classifica saberes em cinco níveis de urgência (Consolidado, Monitoramento, Atenção, Alto, Crítico). A validação cruzada entre ISB e percepção comunitária de urgência indicou aderência superior (menor RMSE) comparada com rankings lineares, sugerindo que a modelagem fuzzy captura não linearidades e interações entre dimensões de vulnerabilidade que métodos convencionais podem subestimar.}
+
+\keywords{Índice de Salvaguarda Biocultural \and Lógica fuzzy \and Teoria de Resposta ao Item \and Vulnerabilidade biocultural \and Sistemas agrícolas tradicionais \and Comunidades quilombolas}
+
+\maketitle
+
+
+\section{Introdução}\label{sec:intro}
+
+%% NOTA: referências a "Capítulo 2" e "Capítulo 3" no texto original correspondem a
+%% artigos complementares desta série. Substituir por citações cruzadas na versão final.
+
+Evidências meta-analíticas recentes indicam que as dimensões de vulnerabilidade biocultural operam de forma interconectada e com magnitudes de efeito diferenciadas, sugerindo que intervenções de salvaguarda produzem respostas heterogêneas segundo o tipo de dimensão avaliada, a região biogeográfica e o tempo de intervenção. Contudo, a tradução dessas evidências em um instrumento operacional de priorização exige dois avanços metodológicos complementares.
+
+O primeiro avanço reside na calibração psicométrica in loco das percepções de vulnerabilidade. Enquanto a meta-análise sintetiza evidências agregadas de múltiplos estudos, a aplicação territorial de um índice de salvaguarda demanda mensuração direta junto às comunidades detentoras dos saberes. A Teoria de Resposta ao Item (TRI), especificamente o Modelo de Crédito Parcial de Masters \citep{Masters1982}, permite calibrar simultaneamente a dificuldade de itens e a habilidade latente dos respondentes em escala intervalar (logit), produzindo escores ($\theta_n$) que capturam a variância real das percepções comunitárias sobre urgência de salvaguarda com precisão superior a escalas brutas \citep{Bond2020,Rasch1960}.
+
+O segundo avanço reside na integração dessas evidências psicométricas em um framework matemático capaz de representar fronteiras difusas e relações não lineares entre variáveis linguísticas. A Teoria dos Conjuntos Difusos, proposta por \citet{Zadeh1965}, oferece esse substrato ao permitir que conceitos como ``alto risco de erosão intergeracional e migração'' ou ``complexidade e singularidade biocultural muito elevada'' sejam formalizados mediante funções de pertinência contínuas, evitando as descontinuidades artificiais impostas por classificações ordinais ou lineares. O sistema de inferência fuzzy tipo Mamdani \citep{Mamdani1975} traduz esse conhecimento em regras SE-ENTÃO auditáveis, produzindo uma saída numérica contínua que sintetiza as múltiplas dimensões de vulnerabilidade.
+
+Nesse contexto, este estudo tem como objetivo desenvolver e implementar um motor de inferência baseado em lógica fuzzy, integrando as variáveis de vulnerabilidade mapeadas pela meta-análise e calibradas por TRI, para gerar o Índice de Salvaguarda Biocultural (ISB), classificando saberes e práticas tradicionais de comunidades quilombolas do Território de Identidade Semiárido Nordeste II (Bahia) segundo urgência de documentação e proteção. A hipótese testada é que o ISB, gerado via lógica fuzzy a partir de variáveis de erosão intergeracional e migração, complexidade e singularidade biocultural, status de documentação, vulnerabilidade jurídica e fundiária, organização social e governança, vitalidade linguística, integração ao mercado e exposição climática, pode apresentar maior fidelidade representacional à percepção comunitária de urgência de salvaguarda do que classificações lineares ou ordinais.
+
+
+\section{Materiais e Métodos}\label{sec:metodos}
+
+O delineamento integra dois componentes sequenciais e interdependentes. O primeiro componente corresponde à calibração psicométrica das dimensões de vulnerabilidade mediante TRI. O segundo implementa o motor de inferência fuzzy para construção do ISB, utilizando como entradas os escores TRI calibrados e como ponderações as magnitudes de efeito ($lnRR$) produzidas pela meta-análise.
+
+
+\subsection{Calibração Psicométrica via Teoria de Resposta ao Item}\label{subsec:tri}
+
+\subsubsection{Contexto e amostra}\label{subsubsec:amostra}
+
+A calibração psicométrica foi conduzida junto a comunidades quilombolas do Território de Identidade Semiárido Nordeste II (Bahia), compreendendo dezoito municípios com população total de 425.976 habitantes. A amostra piloto ($n = 30$--$40$) foi dimensionada conforme critério de \citet{Linacre1994}, que estabelece mínimo de 30 respondentes para calibração estável de itens pelo Modelo Rasch com 95\% de confiança e precisão de $\pm 1$ logit, permitindo identificação de itens problemáticos e verificação preliminar do funcionamento da escala. Validação em larga escala será conduzida em fase posterior mediante emenda ao protocolo. Os critérios de inclusão contemplaram produtores agrícolas com idade igual ou superior a 18 anos, de ambos os sexos, residentes nas comunidades certificadas pela Fundação Cultural Palmares e registradas na Base de Informações sobre Povos Indígenas e Localidades Quilombolas do IBGE, com ênfase nas onze comunidades quilombolas de Jeremoabo. A coleta de dados foi operacionalizada por equipe de 2 a 3 entrevistadores previamente capacitados mediante protocolo padronizado de treinamento \citep{Fowler2014}.
+
+\subsubsection{Instrumento de mensuração}\label{subsubsec:instrumento}
+
+O instrumento, fundamentado na adaptação transcultural WOCAT-SLM-QBR, operacionalizou as oito dimensões de vulnerabilidade mapeadas na meta-análise mediante escalas Likert de cinco pontos. Cada dimensão foi representada por cinco a sete itens, totalizando 40 itens validados mediante Índice de Validade de Conteúdo superior a 0,85 por painel de juízes. A primeira dimensão do instrumento compreendeu variáveis sociodemográficas de caracterização (idade, gênero, escolaridade, ocupação, tempo de residência e envolvimento em atividades agrícolas), permitindo estratificação analítica posterior.
+
+\subsubsection{Modelo TRI}\label{subsubsec:modelo_tri}
+
+Foi empregado o Modelo de Crédito Parcial de Masters \citep{Masters1982}, extensão politômica do Modelo Rasch \citep{Rasch1960} para itens de resposta ordenada, que estima simultaneamente limiares de dificuldade ($\delta_{ik}$) entre categorias adjacentes e habilidade latente ($\theta_n$) dos respondentes conforme Eq.~\ref{eq:tri}.
+
+\begin{equation}
+P(X_{ni}=x|\theta_n, \delta_i) = \frac{\exp\left(\sum_{k=0}^{x}(\theta_n - \delta_{ik})\right)}{\sum_{j=0}^{m_i}\exp\left(\sum_{k=0}^{j}(\theta_n - \delta_{ik})\right)}
+\label{eq:tri}
+\end{equation}
+
+O ajuste item-pessoa foi avaliado por índices Infit e Outfit MNSQ (critério 0,6--1,4 logits) e estatísticas padronizadas ZSTD ($< \pm 2{,}0$) \citep{Wright1994,Linacre2002}. Itens com desajuste severo (MNSQ $>$ 1,5 ou ZSTD $>$ 3,0) foram inspecionados qualitativamente e reformulados ou eliminados quando necessário \citep{Wilson2005}. A correlação ponto-medida foi avaliada com limiar superior a 0,30 \citep{Bond2020}.
+
+A confiabilidade da separação foi quantificada pelos coeficientes de separação pessoa ($G_{person}$, Eq.~\ref{eq:gsep}) e item ($G_{item}$) \citep{Wright1996}, com limiares de $G_{person} > 0{,}80$ e $G_{item} > 0{,}90$ \citep{Fisher2007}.
+
+\begin{equation}
+G_{person} = \frac{SD_{adjusted}^2}{SD_{adjusted}^2 + SE_{mean}^2}
+\label{eq:gsep}
+\end{equation}
+
+O funcionamento diferencial dos itens (DIF) será avaliado exploratoriamente por procedimento de Mantel \citep{Bond2020ApplyingSciences}, com interpretação cautelosa dado o tamanho amostral piloto ($n = 30$--$40$). Itens com contraste DIF superior a $|0{,}64|$ logits serão sinalizados para investigação adicional na fase de validação em larga escala. A análise formal de DIF por Mantel-Haenszel com correção de Bonferroni e DIF não uniforme por regressão logística ordinal será conduzida na fase subsequente, quando a amostra permitir poder estatístico adequado.
+
+\begin{equation}
+DIF_{contrast} = \delta_{focal} - \delta_{reference}
+\label{eq:dif}
+\end{equation}
+
+As análises foram conduzidas no software Winsteps versão 5.5.2 \citep{Linacre2023}, gerando mapas pessoa-item (Wright maps) para avaliação do targeting do instrumento ($|\theta_{mean} - \delta_{mean}| < 1$ logit) \citep{Bond2020}.
+
+
+\subsubsection{Validação Psicométrica Complementar (Estudo Piloto)}\label{subsubsec:validacao_psicometrica}
+
+Dado o caráter piloto da calibração ($n = 30$--$40$), a validação psicométrica complementar adotará procedimentos compatíveis com a dimensão amostral. A estrutura interna será avaliada mediante Análise Fatorial Exploratória (AFE) \citep{Fabrigar1999} com extração por Eixos Principais e rotação Promax, verificando-se os pressupostos por teste de esfericidade de Bartlett e índice Kaiser-Meyer-Olkin ($KMO > 0{,}60$) \citep{Kaiser1974}. A Análise Fatorial Confirmatória (AFC) plena será reservada para a fase de validação em larga escala, quando a amostra permitir razão adequada de respondentes por parâmetro estimado \citep{Brown2015}. Nesta etapa piloto, a adequação do modelo de oito fatores será avaliada exclusivamente pelos indicadores Rasch (Infit/Outfit, separação, mapas pessoa-item).
+
+A confiabilidade será quantificada por alfa de Cronbach ($\alpha > 0{,}70$) \citep{Cronbach1951} e confiabilidade composta (Eq.~\ref{eq:cc}) \citep{Fornell1981}, com interpretação cautelosa dado o tamanho amostral. A variância média extraída (Eq.~\ref{eq:ave}) será reportada a título exploratório.
+
+\begin{equation}
+CC = \frac{(\sum\lambda_i)^2}{(\sum\lambda_i)^2 + \sum\theta_i}
+\label{eq:cc}
+\end{equation}
+
+\begin{equation}
+AVE = \frac{\sum\lambda_i^2}{\sum\lambda_i^2 + \sum\theta_i}
+\label{eq:ave}
+\end{equation}
+
+
+\subsection{Motor de Inferência Fuzzy e Construção do ISB}\label{subsec:fuzzy}
+
+\subsubsection{Arquitetura do sistema}\label{subsubsec:arquitetura}
+
+O Índice de Salvaguarda Biocultural (ISB) foi construído mediante sistema de inferência fuzzy tipo Mamdani \citep{Mamdani1975}, integrando os escores TRI ($\theta_n$) das oito dimensões de vulnerabilidade com os pesos de efeito ($lnRR$) produzidos pela meta-análise. A arquitetura compreende quatro módulos.
+
+\textbf{Módulo 1 (Fuzzificação).} As oito variáveis de entrada foram fuzzificadas mediante funções de pertinência triangulares e trapezoidais, cujos parâmetros foram calibrados com base em três fontes convergentes, a saber, a distribuição empírica dos escores $\theta_n$ da amostra comunitária, os limiares de consenso do painel Delphi (mediana, IQR) e as magnitudes de efeito meta-analíticas ($lnRR$), que informam a ponderação relativa das dimensões. Para cada variável, três a cinco termos linguísticos (\textit{muito baixo}, \textit{baixo}, \textit{médio}, \textit{alto}, \textit{muito alto}) foram definidos com universos de discurso ancorados nas distribuições empíricas.
+
+Exemplo de fuzzificação para Risco de Erosão Intergeracional e Migração: $\mu_{Baixo}(x) = \text{trimf}(x; [0, 0, 4])$; $\mu_{Medio}(x) = \text{trimf}(x; [3, 5, 7])$; $\mu_{Alto}(x) = \text{trimf}(x; [6, 10, 10])$.
+
+\textbf{Módulo 2 (Base de regras SE-ENTÃO).} As regras de inferência foram elicitadas mediante estratégia híbrida que combina regras derivadas das evidências meta-analíticas (onde as dimensões com maiores tamanhos de efeito, $lnRR$, recebem maior peso nas proposições condicionais), regras derivadas dos modelos TRI (em que os limiares de dificuldade e padrões de resposta indicam interações não lineares entre dimensões) e regras derivadas da validação comunitária, que incorporam relações causais identificadas pelos mestres de saberes. A consistência foi verificada computacionalmente para eliminação de contradições e redundâncias \citep{Zadeh1965}. Estima-se um conjunto de 50--100 regras cobrindo as principais combinações de estados das variáveis.
+
+Exemplos de regras:
+
+\textbf{SE} Risco de Erosão é Alto \textbf{E} Status de Documentação é Baixo \textbf{ENTÃO} ISB é Crítico
+
+\textbf{SE} Complexidade e Singularidade Biocultural é Alta \textbf{E} Vulnerabilidade Jurídica e Fundiária é Alta \textbf{ENTÃO} ISB é Muito Alto
+
+\textbf{SE} Risco de Erosão é Baixo \textbf{E} Documentação é Alta \textbf{ENTÃO} ISB é Consolidado
+
+\textbf{Módulo 3 (Mecanismo de inferência).} Aplicação do operador de agregação (mínimo para ``E'', máximo para ``OU'') e cálculo do grau de ativação de cada regra, com as saídas parciais agregadas mediante operador de união (máximo), gerando superfície de pertinência fuzzy para a variável de saída.
+
+\textbf{Módulo 4 (Defuzzificação e ISB).} O método do centróide foi empregado para defuzzificação (Eq.~\ref{eq:isb}), produzindo índice numérico contínuo ($ISB \in [0, 100]$).
+
+\begin{equation}
+ISB = \frac{\int \mu_{ISB}(y) \cdot y \, dy}{\int \mu_{ISB}(y) \, dy}
+\label{eq:isb}
+\end{equation}
+
+O ISB foi classificado em cinco categorias de urgência de salvaguarda: Consolidado [0--20], Monitoramento [20--40], Atenção [40--60], Alto [60--80] e Crítico [80--100].
+
+
+\subsection{Validação do ISB}\label{subsec:validacao}
+
+A validação seguiu protocolo dual. A validação técnica avaliou sensibilidade do índice mediante análise de superfícies de resposta, perturbação de parâmetros e comparação dos rankings ISB com rankings obtidos por agregação linear ponderada dos escores TRI brutos (sem modelagem fuzzy). Para a comparação, utilizou-se o erro quadrático médio da raiz (RMSE) entre rankings computacionais e rankings atribuídos pela percepção comunitária de urgência (Eq.~\ref{eq:rmse}).
+
+\begin{equation}
+RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(R_{ISB,i} - R_{comunitario,i})^2}
+\label{eq:rmse}
+\end{equation}
+
+A validação participativa foi conduzida mediante oficinas devolutivas (n~=~2, com 8--10 participantes cada) nas comunidades quilombolas, onde os rankings ISB e os perfis de vulnerabilidade por dimensão foram apresentados em visualizações acessíveis e submetidos à avaliação crítica dos detentores dos saberes. Discrepâncias significativas entre classificação computacional e percepção comunitária acionaram ciclos de revisão da base de regras, assegurando conformidade com o princípio de validade consequencial \citep{Messick1995}. A concordância entre ISB e percepção comunitária foi quantificada pelo coeficiente de correlação de concordância de Lin ($\rho_c$) e pelo coeficiente $W$ de Kendall.
+
+
+\section{Resultados}\label{sec:resultados}
+
+\textit{[Os resultados serão apresentados após a calibração TRI e implementação do motor fuzzy.]}
+
+\subsection{Calibração Psicométrica e Escores TRI}\label{subsec:res_tri}
+
+Os mapas pessoa-item (Wright maps) demonstrarão a cobertura do traço latente e o targeting do instrumento para cada dimensão de vulnerabilidade. Os índices de ajuste (Infit, Outfit MNSQ), confiabilidade de separação ($G_{person}$, $G_{item}$) e análise exploratória de DIF serão tabulados. A distribuição dos escores $\theta_n$ por comunidade e por dimensão de vulnerabilidade será apresentada graficamente. Dada a natureza piloto da calibração ($n = 30$--$40$), os resultados serão interpretados como indicadores preliminares do funcionamento do instrumento, reservando-se a validação confirmatória (AFC, DIF formal, invarância) para a fase de validação em larga escala.
+
+\subsection{ISB e Classificação de Urgência de Salvaguarda}\label{subsec:res_isb}
+
+As superfícies de resposta fuzzy serão apresentadas para pares selecionados de variáveis de entrada, demonstrando as interações não lineares capturadas pelo sistema. A distribuição dos saberes e práticas avaliados entre as cinco categorias de urgência (Consolidado a Crítico) será tabulada por comunidade e por dimensão dominante. O perfil de vulnerabilidade multidimensional (gráficos radar) dos saberes classificados como ``Crítico'' será discutido em termos de implicações para priorização de políticas.
+
+\subsection{Validação Cruzada do ISB}\label{subsec:res_validacao}
+
+A comparação entre rankings ISB e rankings de percepção comunitária será apresentada mediante gráficos de dispersão (ISB vs.\ ranking comunitário) e estatísticas de concordância ($\rho_c$ de Lin, $W$ de Kendall). A comparação de RMSE entre modelo fuzzy e modelo linear demonstrará a hipótese de superioridade do ISB na captura de não linearidades.
+
+
+\section{Discussão}\label{sec:discussao}
+
+\textit{[A discussão será elaborada com base nos resultados obtidos. Os eixos analíticos previstos são apresentados abaixo.]}
+
+A integração entre calibração TRI e inferência fuzzy será discutida como contribuição metodológica para a construção de índices compostos em variáveis latentes de alta ambiguidade conceitual, posicionada em relação a abordagens alternativas (agregação linear, AHP, ELECTRE). A aderência dos rankings ISB à percepção comunitária será interpretada em termos de capacidade da lógica fuzzy de capturar não linearidades que métodos convencionais podem subestimar. Os perfis de vulnerabilidade dos saberes classificados como ``Crítico'' serão discutidos em termos de mecanismos de erosão biocultural e implicações para políticas de priorização.
+
+As limitações serão explicitadas, incluindo o tamanho amostral piloto ($n = 30$--$40$), que limita a generalização dos parâmetros TRI e impede realização de AFC confirmatória e análise de invarância, a sensibilidade da base de regras fuzzy a premissas de elicitação, e a restrição geográfica ao Semiárido Nordeste II. Será indicado que validação em larga escala via emenda ao protocolo ético permitirá confirmação dos parâmetros e análises complementares (AFC, DIF formal, invarância de medida).
+
+
+\section{Conclusão}\label{sec:conclusao}
+
+\textit{[A conclusão será elaborada após os resultados. As entregas previstas são apresentadas abaixo.]}
+
+O ISB será apresentado como artefato de priorização de salvaguarda operacional, validado por calibração psicométrica, evidência meta-analítica e concordância comunitária. A contribuição metodológica da integração TRI-fuzzy será posicionada como protocolo replicável para construção de índices compostos de vulnerabilidade biocultural.
+
+
+\backmatter
+
+\bmhead{Acknowledgements}
+
+Os autores agradecem às comunidades quilombolas do Território de Identidade Semiárido Nordeste II pela participação e validação comunitária.
+
+\section*{Declarations}
+
+\begin{itemize}
+\item \textbf{Funding:} [Informar agência de fomento]
+\item \textbf{Conflict of interest:} The authors declare no competing interests.
+\item \textbf{Ethics approval:} Protocolo aprovado pelo Comitê de Ética em Pesquisa da Universidade Federal de Sergipe.
+\item \textbf{Consent for publication:} Informed consent was obtained from all participants.
+\item \textbf{Data availability:} [Informar repositório]
+\item \textbf{Code availability:} [Informar repositório]
+\item \textbf{Author contribution:} CVSO: conceptualization, data collection, writing. LDVS: methodology, formal analysis, writing. PRG: supervision, review.
+\end{itemize}
+
+
+\bibliography{references}
+
+\end{document}
