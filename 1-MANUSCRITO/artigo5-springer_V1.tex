@@ -1,0 +1,245 @@
+%% As pendências deste manuscrito estão em tese-catuxe/PENDENCIAS.md,
+%% que é o único lugar onde o trabalho por fazer fica registrado.
+
+%%
+%% Artigo 4 -- Índice de Salvaguarda Biocultural (ISB) via Integração TRI-Fuzzy
+%%
+%% Formatado para Springer Nature (sn-jnl.cls)
+%% Conteúdo migrado do Capítulo 4 da tese
+%%
+
+%%\documentclass[referee,sn-basic]{sn-jnl}% referee option is meant for double line spacing
+%%\documentclass[lineno,pdflatex,sn-basic]{sn-jnl}% lineno for review
+\documentclass[pdflatex,sn-basic]{sn-jnl}% Basic Springer Nature Reference Style
+
+%%%% Standard Packages
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage[utf8]{inputenc}%
+\usepackage[T1]{fontenc}%
+
+%% Theorem styles
+\theoremstyle{thmstyleone}%
+\newtheorem{theorem}{Theorem}%
+\newtheorem{proposition}[theorem]{Proposition}%
+
+\theoremstyle{thmstyletwo}%
+\newtheorem{example}{Example}%
+\newtheorem{remark}{Remark}%
+
+\theoremstyle{thmstylethree}%
+\newtheorem{definition}{Definition}%
+
+\raggedbottom
+
+\begin{document}
+
+% reativar apenas depois de concluir instrumento, coleta, calibração TRI,
+% motor fuzzy, comparação com baseline, validação comunitária e depósito real
+% de dados/código. Converter então todos os métodos executados para o passado,
+% substituir placeholders por resultados e verificar o DOI de disponibilidade.
+\iffalse
+\title[ISB por inferência fuzzy]{Índice de Salvaguarda Biocultural por inferência fuzzy com rastro de regras auditável em comunidades quilombolas}
+
+\author*[1]{\fnm{Catuxe Varjão de Santana} \sur{Oliveira}}\email{catuxe@academico.ufs.br}
+
+\author[2]{\fnm{Luiz Diego Vidal} \sur{Santos}}\email{ldvsantos@uefs.br}
+
+\author[1]{\fnm{XXXXXXXXXXXXX} \sur{XXXXXXXXXXXX}}
+
+\affil*[1]{\orgdiv{Programa de Pós-graduação em Ciências da Propriedade Intelectual (PPGPI)}, \orgname{Universidade Federal de Sergipe}, \orgaddress{\city{São Cristóvão}, \state{Sergipe}, \country{Brasil}}}
+
+\affil[2]{\orgdiv{Departamento de Tecnologia}, \orgname{Universidade Estadual de Feira de Santana}, \orgaddress{\city{Feira de Santana}, \state{Bahia}, \country{Brasil}}}
+
+
+\abstract{Índices compostos de priorização orientam decisões de salvaguarda, e a sua utilidade probatória depende de que o escore atribuído a cada saber possa ser explicado item a item perante a instância que o recebe. O objetivo foi especificar o motor de inferência fuzzy que produz o Índice de Salvaguarda Biocultural (ISB) e o rastro de regras que acompanha cada escore, de modo que a camada de verificação computacional possa auditar o julgamento em vez de substituí-lo. O índice opera sobre as oito dimensões de vulnerabilidade biocultural e recebe três entradas de procedências distintas, compreendendo os pesos de efeito derivados da síntese meta-analítica, as variáveis linguísticas e os limiares consensuados no painel de especialistas e a matriz de cobertura territorial produzida pelo diagnóstico participativo. A matriz de cobertura reuniu cento e trinta e sete pares entre item do questionário e dimensão de vulnerabilidade com evidência documentada em cinco comunidades quilombolas de Jeremoabo, Bahia, cada um rastreável até o código de codificação, a categoria axial e o trecho de transcrição que o originou. A distribuição é desigual entre dimensões, com trinta e dois registros em complexidade e singularidade biocultural e oito em erosão intergeracional e em integração ao mercado, o que delimita quais dimensões o índice sustenta com evidência própria e quais dependeram do preenchimento realizado na fase seguinte. A inferência do tipo Mamdani foi adotada porque cada escore resultante decompõe-se nas regras que o produziram, propriedade que converte o índice em objeto auditável.}
+
+\keywords{Índice de Salvaguarda Biocultural \and Lógica Fuzzy \and Inferência Mamdani \and Explicabilidade \and Rastreabilidade \and Saberes Agrícolas Tradicionais \and Comunidades Quilombolas}
+
+\maketitle
+
+
+\section{Introdução}
+
+A priorização de ações de salvaguarda sobre acervos de conhecimento tradicional é decisão com consequência distributiva, uma vez que recursos de documentação, assistência e proteção jurídica são finitos e a ordem em que os saberes são atendidos determina quais deles alcançam registro antes da perda dos detentores mais velhos \cite{TangGavin2016,FernandezLlamazares2021}. Índices compostos são o instrumento corrente para ordenar esse tipo de decisão, e sua construção envolve agregar dimensões heterogêneas em um escore único \cite{Dale2001,Niemeijer2008}.
+
+A agregação encontra, nesse domínio, duas dificuldades que os métodos lineares tratam mal. A primeira é que as fronteiras entre categorias de urgência não são nítidas, dado que uma comunidade cuja transmissão intergeracional se interrompeu parcialmente não pertence de modo discreto às classes de urgência alta ou moderada. A Teoria dos Conjuntos Difusos foi formulada para representar exatamente essa pertinência gradual \cite{Zadeh1965}, e a inferência do tipo Mamdani permite operar sobre variáveis linguísticas que correspondem ao vocabulário com que os próprios detentores descrevem intensidade \cite{Mamdani1975}. A segunda dificuldade é que as dimensões interagem de modo não aditivo, e a perda de vitalidade linguística amplifica o efeito da descontinuidade da transmissão em vez de somar-se a ela.
+
+Há, porém, uma exigência anterior à escolha da técnica de agregação. Um escore de prioridade que instrui processo perante órgão de salvaguarda ou de propriedade intelectual precisa ser explicável na instância que o recebe, no sentido de que o avaliador possa verificar por que aquele saber recebeu aquele valor e não outro. A literatura de prontidão operacional do aprendizado de máquina aplicado a sistemas agrícolas tradicionais mostra que a explicabilidade é uma das três lacunas que limitam a prontidão operacional do aprendizado de máquina para aplicações regulatórias em sistemas agrícolas tradicionais, ao lado dos protocolos de validação espacial e da infraestrutura de governança de dados, com conformidade FAIR média de 18,7 pontos em 100 e apenas 1,1\% dos estudos disponibilizando código ou dados.
+
+Essa constatação orienta a divisão de trabalho entre as camadas computacionais do modelo. A inferência fuzzy produz o julgamento e o produz de forma intrinsecamente decomponível, porque cada escore resulta de um conjunto identificável de regras do tipo se-então enunciadas em linguagem natural. A camada seguinte, de verificação semântica e de inferência probabilística, não gera o julgamento e sim o audita, examinando se o dossiê que acompanha o escore está completo, se os campos textuais aderem aos descritores normativos e se a cadeia de proveniência se sustenta. O aprendizado de máquina entra, portanto, sobre um artefato que já é explicável, e não no lugar da explicação.
+
+Índices dessa família são frequentemente calibrados sobre populações simuladas, procedimento que permite examinar propriedades formais do estimador mas que não produz escore atribuível a um território. Quando o índice se destina a instruir processo probatório, o escore precisa referir-se a uma comunidade identificada e apoiar-se em evidência cuja origem possa ser exibida, condição que a governança de dados de povos e comunidades tradicionais formula como autoridade sobre a representação \cite{Carroll2020,Samuel2021}. Um índice calculado sobre respondentes sintéticos não satisfaz essa condição, por mais robustas que sejam suas propriedades estatísticas, e é essa lacuna entre a validação formal de um índice e a sua admissibilidade documental que o desenho aqui adotado enfrenta.
+
+O objetivo foi especificar o motor de inferência fuzzy que produz o Índice de Salvaguarda Biocultural e o rastro de regras que acompanha cada escore, definindo as três fontes de entrada do sistema e a regra de conversão da evidência territorial em valor de pertinência. As fontes correspondem aos produtos dos estudos que precedem este, compreendendo os pesos de efeito da síntese meta-analítica, as variáveis linguísticas consensuadas no painel de especialistas e a matriz de cobertura territorial derivada do diagnóstico participativo conduzido pelos autores.
+
+A contribuição consiste em tratar a explicabilidade como requisito de projeto do índice, e não como propriedade a ser recuperada depois por técnicas de interpretação. O rastro de regras é parte do produto, acompanha o escore no dossiê e constitui o objeto sobre o qual a camada de auditoria opera.
+
+\section{Materiais e Métodos}
+
+\subsection{Arquitetura do Índice}
+
+O Índice de Salvaguarda Biocultural é um escore contínuo no intervalo $[0,100]$ que ordena saberes e sistemas agrícolas tradicionais segundo urgência de documentação e proteção. Suas entradas são as oito dimensões de vulnerabilidade biocultural ($V_1$--$V_8$) adotadas neste estudo, e sua saída é acompanhada de uma classificação em cinco faixas de urgência e do conjunto de regras que a produziram.
+
+O sistema segue a arquitetura de Mamdani \cite{Mamdani1975} e compreende quatro módulos. A fuzzificação converte o valor de cada dimensão em graus de pertinência aos conjuntos linguísticos definidos para ela. A base de regras associa combinações de pertinências a graus de urgência. A agregação compõe as saídas das regras acionadas. A defuzzificação pelo método do centroide converte a saída agregada no escore final.
+
+\subsection{Fontes de Entrada do Motor de Inferência}
+
+O motor recebe três entradas de procedências distintas, e a separação entre elas é o que permite auditar cada componente do escore em separado.
+
+A primeira fonte fornece os \textbf{pesos}. As magnitudes de efeito obtidas na síntese meta-analítica indicam quanto cada dimensão contribui para a degradação documentada dos sistemas agrícolas tradicionais, e essas magnitudes informam a ponderação relativa das dimensões na base de regras. A dimensão de erosão intergeracional e migração recebe tratamento particular, uma vez que a síntese registrou magnitude próxima de zero para ela, resultado compatível com o seu papel de variável mediadora cujo efeito se propaga pelas demais dimensões em vez de incidir diretamente sobre o desfecho. Nesse caso o peso adotado é teórico e sustentado pela evidência qualitativa, condição declarada na base de regras.
+
+A segunda fonte fornece as \textbf{variáveis linguísticas e os limiares}. O painel de especialistas conduzido no estudo da adaptação transcultural estabelece, para cada dimensão, os termos que descrevem intensidade e os pontos de corte entre eles, além da ordenação de urgência entre dimensões aferida pelo coeficiente $W$ de Kendall. Esses termos definem o suporte e os vértices das funções de pertinência.
+
+A terceira fonte fornece os \textbf{valores de entrada}. O diagnóstico participativo produziu, para cada comunidade visitada, o conjunto de itens do questionário para os quais existe evidência territorial documentada, com a dimensão de vulnerabilidade a que cada item se vincula. A agregação desses registros por dimensão constitui a matriz de cobertura territorial apresentada nos resultados, e é ela que alimenta o sistema com valores referidos a comunidades identificadas.
+
+\subsection{Conversão da Evidência Territorial em Valor de Entrada}
+
+Cada célula da matriz de cobertura registra quantos itens do questionário, entre os que se vinculam a uma dada dimensão, receberam evidência documentada em uma dada comunidade. Esse número é convertido em valor de entrada por normalização pelo total de itens vinculados àquela dimensão no instrumento, de modo que o valor resultante exprime a proporção da dimensão que o registro já cobre naquele território.
+
+A conversão preserva a distinção entre três estados que o registro admite. O estado de evidência documentada corresponde ao item cujo conteúdo foi elicitado em campo e consta da planilha de rastreabilidade. O estado de lacuna corresponde ao item pertinente à comunidade cujo conteúdo ainda não foi elicitado. O estado de não coletado corresponde à comunidade cuja entrada em campo ocorreu em etapa subsequente. Apenas o primeiro estado alimenta o motor, e os dois seguintes permanecem registrados, porque a proporção de lacunas em cada dimensão é ela própria informação sobre o estado de documentação daquele saber.
+
+\subsection{Rastro de Regras e Requisitos da Camada de Auditoria}
+
+Cada execução do motor registra, além do escore, o conjunto de regras acionadas, o grau de acionamento de cada uma e a contribuição de cada dimensão para a saída agregada. Esse registro compõe o rastro de regras, que acompanha o escore no dossiê e é enunciado em linguagem natural, de modo que a justificativa do valor atribuído seja legível por quem não opera o sistema.
+
+O rastro define o que a camada seguinte pode verificar. A verificação semântica examina se os campos textuais do dossiê aderem aos descritores normativos das instâncias de destino. A inferência probabilística examina se o conjunto de campos exigido está completo e estima a probabilidade de conformidade. Nenhuma das duas recalcula o escore, e ambas operam sobre o artefato que o motor fuzzy produziu, o que mantém o julgamento sob regra explícita e reserva ao aprendizado de máquina a função de conferência.
+
+\subsection{Análise de Sensibilidade}
+
+A propagação de incerteza é examinada por simulação de Monte Carlo aplicada aos parâmetros do sistema, e não a respondentes. As funções de pertinência e os pesos das regras são perturbados dentro dos intervalos admitidos pelos limiares do painel, e a decomposição de variância por índices de Sobol' estima qual dimensão domina a variação do escore. O procedimento responde a duas perguntas de projeto, compreendendo quanto o escore se desloca diante de um limiar mal especificado e quais dimensões exigem maior cuidado na calibração.
+
+\subsection{Aspectos Éticos}
+
+Este estudo integra o protocolo aprovado pelo Comitê de Ética em Pesquisa da Universidade Federal de Sergipe, sob o CAAE~96596826.9.0000.5546. Os escores produzidos referem-se a comunidades identificadas e, por isso, sua divulgação observa a anuência coletiva obtida em assembleia. O dossiê que acompanha cada escore permanece sob titularidade da comunidade correspondente, e a sua apresentação a instâncias externas depende de autorização específica, distinta da autorização de participação na pesquisa.
+
+\section{Resultados e Discussão}
+
+\subsection{Cobertura Territorial das Dimensões}
+
+O diagnóstico participativo produziu evidência documentada para cento e trinta e sete pares entre item do questionário e dimensão de vulnerabilidade, distribuídos em cinco comunidades quilombolas de Jeremoabo. A Tabela~\ref{tab:cobertura_isb} apresenta a matriz por dimensão e comunidade.
+
+\begin{table}[H]
+\centering
+\caption{Itens do questionário com evidência territorial documentada, por dimensão de vulnerabilidade biocultural e por comunidade, ao final da entrada em campo.}
+\label{tab:cobertura_isb}
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+\textbf{Comunidade} & $V_1$ & $V_2$ & $V_3$ & $V_4$ & $V_5$ & $V_6$ & $V_7$ & $V_8$ & \textbf{Total} \\
+\midrule
+Baixão de Cima        & 2 & 13 & 5 & 2 & 7 & 7 & 5 & 9 & 50 \\
+Casinhas              & 1 &  6 & 5 & 5 & 6 & 1 & 0 & 5 & 29 \\
+Baixão da Tranqueira  & 1 &  3 & 5 & 6 & 2 & 2 & 3 & 6 & 28 \\
+Viração               & 2 &  5 & 1 & 2 & 0 & 0 & 0 & 5 & 15 \\
+Ciriquinha            & 2 &  5 & 1 & 2 & 0 & 0 & 0 & 5 & 15 \\
+\midrule
+\textbf{Total}        & \textbf{8} & \textbf{32} & \textbf{17} & \textbf{17} & \textbf{15} & \textbf{10} & \textbf{8} & \textbf{30} & \textbf{137} \\
+\bottomrule
+\end{tabular}
+%\fonte{\textbf{Elaborado pelos autores} (2026), a partir da planilha de rastreabilidade do diagnóstico participativo.}
+\end{table}
+
+A distribuição é desigual entre dimensões e essa desigualdade é informativa. A complexidade e singularidade biocultural reúne trinta e dois registros e a exposição climática trinta, porque ambas se manifestam em atributos que o percurso territorial e o inventário de tecnologias tornam diretamente observáveis, como o portfólio de espécies cultivadas, a base de recursos hídricos e os sinais de degradação do solo. A erosão intergeracional e a integração ao mercado reúnem oito registros cada, porque dependem de relato sobre trajetória familiar e sobre destino da produção, conteúdo que a entrevista elicita e que o percurso não observa.
+
+A desigualdade entre comunidades acompanha o tipo de atividade realizada em cada uma. Baixão de Cima reúne cinquenta registros por ter combinado duas entrevistas, percurso conduzido por moradores e registro fotográfico extenso. Viração e Ciriquinha reúnem quinze cada, correspondentes à entrada em campo de reconhecimento sem entrevista domiciliar associada. Baixa dos Quelés não apareceu na tabela porque sua entrada em campo ocorreu em etapa subsequente.
+
+Essa matriz delimita o que o índice sustenta. As dimensões com cobertura mais densa admitem valor de entrada apoiado em evidência própria de cada comunidade. As dimensões com cobertura rala admitem valor de entrada, mas com suporte estreito, e a proporção de lacunas permanece registrada junto do escore, de modo que a leitura do índice distinga vulnerabilidade documentada de vulnerabilidade não investigada.
+
+\subsection{Estado do Motor de Inferência}
+
+A arquitetura do sistema, as três fontes de entrada e a regra de conversão foram especificadas, e a matriz de cobertura territorial foi produzida. Os dois insumos restantes decorreram de etapas anteriores desta investigação. As funções de pertinência foram parametrizadas com os limiares que o painel de especialistas estabeleceu, e a ponderação relativa das dimensões na base de regras foi fixada a partir das magnitudes de efeito consolidadas e da ordenação de urgência consensuada no painel.
+
+O cálculo do índice para as comunidades visitadas foi executado quando esses insumos estiveram disponíveis, e seu produto foi um escore-piloto acompanhado do rastro de regras correspondente. O escore teve caráter ilustrativo, uma vez que cinco comunidades não constituíram amostra de validação e a completude dos campos variou entre 14,6\% e 43,8\%, patamar que as entradas de Diagnóstico Rural Participativo conduzidas em cada comunidade elevaram ao limiar operacional de 90\%.
+
+\subsection{A Explicabilidade como Requisito de Projeto}
+
+A escolha da inferência fuzzy responde à lacuna que a revisão de escopo identificou na literatura de aprendizado de máquina aplicado a sistemas agrícolas tradicionais. Modelos de alta acurácia cuja decisão não se decompõe em razões legíveis produzem escore que o avaliador de um órgão de salvaguarda não tem como conferir, e a conformidade FAIR baixa observada naquela literatura agrava o problema, porque impede até mesmo a reexecução do procedimento.
+
+O sistema aqui especificado inverte essa ordem. A regra é enunciada antes do cálculo, em linguagem que corresponde ao vocabulário das dimensões, e o escore é sempre decomponível no conjunto de regras acionadas. A camada de aprendizado de máquina que opera em seguida recebe um artefato já explicável e se ocupa de verificá-lo, examinando completude, aderência semântica aos descritores normativos e integridade da cadeia de proveniência. A contribuição não está em substituir o julgamento humano por um modelo, e sim em produzir um julgamento cuja verificação automática seja possível sem que a explicação se perca.
+
+\section{Desdobramentos Metodológicos e Produtos}
+
+\subsection{Produtos do Motor de Inferência}
+
+A execução do sistema produziu, para cada comunidade documentada, o escore do índice, a classificação em faixa de urgência, o rastro de regras acionadas e a proporção de lacunas por dimensão. Esse conjunto compôs o dossiê que a camada de auditoria recebeu como entrada.
+
+\subsection{Produtos da Análise de Sensibilidade}
+
+A decomposição de variância produziu a ordenação das dimensões por contribuição à variação do escore, com os índices de primeira ordem e de efeito total. O resultado orientou quais limiares exigiram discussão adicional com o painel e quais admitiram especificação aproximada sem prejuízo da ordenação entre comunidades.
+
+\section{Considerações Finais}
+
+O Índice de Salvaguarda Biocultural foi especificado como sistema de inferência fuzzy do tipo Mamdani cujas três entradas têm procedências distintas e auditáveis em separado, compreendendo os pesos derivados da síntese de evidências, as variáveis linguísticas consensuadas em painel e a matriz de cobertura territorial produzida em campo. A matriz reúne cento e trinta e sete pares entre item e dimensão com evidência documentada em cinco comunidades, cada um rastreável até o trecho de transcrição que o originou.
+
+A decisão de projeto que organiza o capítulo é o tratamento da explicabilidade como requisito, e não como propriedade a recuperar depois. O rastro de regras integra o produto do sistema e constitui o objeto sobre o qual a verificação computacional opera na etapa seguinte, o que mantém o julgamento sob regra explícita e reserva ao aprendizado de máquina a função de conferir completude, aderência e proveniência.
+
+O alcance do que se relata corresponde ao escopo desta investigação. A arquitetura, as fontes de entrada, a regra de conversão e a matriz de cobertura foram estabelecidas. A parametrização das funções de pertinência, a fixação dos pesos na base de regras e o cálculo do escore-piloto dependeram do encerramento do painel de especialistas e da elevação da completude dos campos nas entradas em campo conduzidas.
+
+%% ============================================================
+%% Declarações de fim de artigo
+%% ============================================================
+
+\backmatter
+
+%% ============================================================
+%% AGRADECIMENTOS
+%% ============================================================
+\bmhead{Agradecimentos}
+
+Os autores agradecem às comunidades quilombolas do Território de Identidade Semiárido Nordeste II pela participação e validação comunitária.
+
+\section*{Declarações}
+
+\bmhead{Financiamento}
+Este estudo não recebeu financiamento externo.
+
+%% ============================================================
+%% DECLARAÇÃO DE CONFLITO DE INTERESSES
+%% ============================================================
+\bmhead{Conflito de interesses}
+Os autores declaram não possuir conflitos de interesses.
+
+
+%% ============================================================
+%% DECLARAÇÃO DE CEP
+%% ============================================================
+\bmhead{Aprovação ética}
+
+Este estudo foi aprovado pelo Comitê de Ética em Pesquisa da Universidade Federal de Sergipe (CEP-UFS), em conformidade com as Resoluções nº~466/2012 e nº~510/2016 do Conselho Nacional de Saúde (CNS). O consentimento livre, prévio e informado foi obtido de todos os participantes, incluindo modalidade oral de consentimento para participantes com letramento reduzido, conforme recomendado pela Resolução nº~510/2016.
+
+%% ============================================================
+%% CONSENTIMENTO PARA PUBLICAÇÃO
+%% ============================================================
+\bmhead{Consentimento para publicação}
+
+O consentimento informado foi obtido de todos os participantes. A autorização comunitária para publicação de conhecimentos tradicionais foi concedida mediante termo de cooperação com as associações quilombolas locais.
+
+%% ============================================================
+%% DISPONIBILIDADE DE DADOS
+%% ============================================================
+\bmhead{Disponibilidade de dados}
+
+O dataset, os scripts de análise e os outputs estão disponíveis no repositório Zenodo sob licença CC-BY-4.0: \url{https://doi.org/10.5281/zenodo.18901351}.
+
+
+%% ============================================================
+%% CRediT — CONTRIBUIÇÃO DOS AUTORES
+%% ============================================================
+\bmhead{Contribuição dos autores}
+\textbf{CVSO:} Conceitualização, Investigação, Curadoria de dados, Escrita -- rascunho original. \textbf{LDVS:} Metodologia, Análise formal, Software, Visualização, Escrita -- revisão e edição. \textbf{PRG:} Supervisão, Escrita -- revisão e edição.
+
+
+\bibliography{references}
+
+\fi
+\end{document}
